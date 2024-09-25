@@ -1,7 +1,7 @@
 // src/components/EditStudent.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import axiosFetch from '../axiosFetch';
 
 const EditStudent = () => {
   const { id } = useParams(); // Get the student ID from the URL
@@ -22,7 +22,7 @@ const EditStudent = () => {
 
   useEffect(() => {
     const fetchStudent = async () => {
-      const response = await axios.get(`process.env.REACT_APP_API_URL/api/students/${id}`);
+      const response = await axiosFetch.get(`/api/students/${id}`);
       setStudent(response.data);
     };
     fetchStudent();
@@ -36,7 +36,7 @@ const EditStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`process.env.REACT_APP_API_URL/api/students/${id}`, student);
+      await axiosFetch.put(`/api/students/${id}`, student);
       navigate('/students'); // Redirect back to students listing
     } catch (error) {
       console.error('Error updating student:', error);

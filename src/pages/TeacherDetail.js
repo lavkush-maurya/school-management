@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import axiosFetch from '../axiosFetch';
 
 const TeacherDetail = () => {
   const { id } = useParams(); // Get the teacher ID from the URL
@@ -10,7 +10,7 @@ const TeacherDetail = () => {
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/teachers/${id}`);
+        const response = await axiosFetch.get(`/api/teachers/${id}`);
         setTeacher(response.data);
       } catch (error) {
         console.error("Error fetching teacher details:", error);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosFetch from "../axiosFetch";
 import { useNavigate } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
@@ -15,7 +15,7 @@ const Students = () => {
 
   const fetchStudents = async (filters = {}) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/students`, {
+      const response = await axiosFetch.get(`/api/students`, {
         params: filters,
       });
       setStudents(response.data);
@@ -50,7 +50,7 @@ const Students = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       try {
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/students/${id}`);
+        await axiosFetch.delete(`/api/students/${id}`);
         fetchStudents();
       } catch (error) {
         console.error("Error deleting student:", error);
@@ -74,9 +74,7 @@ const Students = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/students/upload`,
-        formData,
+      const response = await axiosFetch.post(`/api/students/upload`, formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
@@ -100,7 +98,7 @@ const Students = () => {
   return (
     <div className="p-4 lg:mx-28 md:mx-16 mx-0">
       <h1 className="text-3xl font-bold text-red-600 text-center">Students</h1>
-      
+
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-4">
         <button
           onClick={handleNewStudent}

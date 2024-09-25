@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosFetch from '../axiosFetch';
 import { useNavigate } from 'react-router-dom';
 
 const CreateStudent = () => {
@@ -26,7 +26,7 @@ const CreateStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/students`, student);
+      await axiosFetch.post(`/api/students`, student);
       navigate('/students');
     } catch (error) {
       console.error('Error creating student:', error);

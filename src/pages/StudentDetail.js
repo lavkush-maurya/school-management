@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosFetch from '../axiosFetch';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const StudentDetail = () => {
@@ -9,7 +9,7 @@ const StudentDetail = () => {
 
   useEffect(() => {
     const fetchStudent = async () => {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/students/${id}`);
+      const response = await axiosFetch.get(`/api/students/${id}`);
       setStudent(response.data);
     };
     fetchStudent();

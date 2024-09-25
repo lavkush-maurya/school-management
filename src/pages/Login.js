@@ -1,6 +1,6 @@
 // src/components/Login.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosFetch from '../axiosFetch';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -9,7 +9,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`process.env.REACT_APP_API_URL/api/auth/login`, { username, password });
+      const response = await axiosFetch.post(`/api/auth/login`, { username, password });
       localStorage.setItem('token', response.data.token);
       // Redirect to dashboard or other page
     } catch (error) {
