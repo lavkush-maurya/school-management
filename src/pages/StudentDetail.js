@@ -9,7 +9,7 @@ const StudentDetail = () => {
 
   useEffect(() => {
     const fetchStudent = async () => {
-      const response = await axios.get(`http://localhost:5000/api/students/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/students/${id}`);
       setStudent(response.data);
     };
     fetchStudent();

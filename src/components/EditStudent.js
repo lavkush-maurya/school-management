@@ -22,7 +22,7 @@ const EditStudent = () => {
 
   useEffect(() => {
     const fetchStudent = async () => {
-      const response = await axios.get(`http://localhost:5000/api/students/${id}`);
+      const response = await axios.get(`process.env.REACT_APP_API_URL/api/students/${id}`);
       setStudent(response.data);
     };
     fetchStudent();
@@ -36,7 +36,7 @@ const EditStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/students/${id}`, student);
+      await axios.put(`process.env.REACT_APP_API_URL/api/students/${id}`, student);
       navigate('/students'); // Redirect back to students listing
     } catch (error) {
       console.error('Error updating student:', error);

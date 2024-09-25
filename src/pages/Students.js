@@ -15,7 +15,7 @@ const Students = () => {
 
   const fetchStudents = async (filters = {}) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/students", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/students`, {
         params: filters,
       });
       setStudents(response.data);
@@ -50,7 +50,7 @@ const Students = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/students/${id}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/students/${id}`);
         fetchStudents();
       } catch (error) {
         console.error("Error deleting student:", error);
@@ -75,7 +75,7 @@ const Students = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/students/upload",
+        `${process.env.REACT_APP_API_URL}/api/students/upload`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

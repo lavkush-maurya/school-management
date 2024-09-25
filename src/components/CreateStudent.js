@@ -26,7 +26,7 @@ const CreateStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/students', student);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/students`, student);
       navigate('/students');
     } catch (error) {
       console.error('Error creating student:', error);

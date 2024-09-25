@@ -10,7 +10,7 @@ const TeacherDetail = () => {
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/teachers/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/teachers/${id}`);
         setTeacher(response.data);
       } catch (error) {
         console.error("Error fetching teacher details:", error);

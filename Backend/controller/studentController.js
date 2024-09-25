@@ -5,7 +5,8 @@ const multer = require("multer");
 const csv = require("fast-csv");
 const fs = require("fs");
 const path = require("path");
-
+const dotenv = require("dotenv");
+dotenv.config();
 // Multer setup for file upload
 const upload = multer({ dest: "uploads/" });
 
@@ -48,7 +49,7 @@ exports.uploadStudents = async (req, res) => {
           // Return the path to the error CSV file
           return res.status(200).json({
             message: "Upload completed with errors.",
-            errorsFile: `http://localhost:5000/uploads/error-students.csv`, // Send the URL
+            errorsFile: `${process.env.BASE_URL}/uploads/error-students.csv`, // Send the URL
           });
         });
       } else {
