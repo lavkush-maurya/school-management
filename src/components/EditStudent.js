@@ -44,60 +44,163 @@ const EditStudent = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // Go back to the previous route
+    navigate('/students'); // Go back to the students list
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">Edit Student</h1>
-      <form onSubmit={handleSubmit} className="mt-4">
+    <div className="p-4 lg:mx-28 md:mx-16 mx-4 my-8">
+      <h1 className="text-2xl font-bold text-red-600 text-center mb-6">Edit {student.name} Details</h1>
+
+      <div className="flex justify-center mb-4">
+        <button 
+          onClick={handleBack} 
+          className="px-6 py-2 bg-gray-300 text-gray-800 rounded-full hover:bg-gray-400 transition duration-300 ease-in-out"
+        >
+          Back
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 space-y-4">
+        
         <div>
-          <label>Name:</label>
-          <input type="text" name="name" value={student.name} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Name:</label>
+          <input 
+            type="text" 
+            name="name" 
+            value={student.name} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Roll Number:</label>
-          <input type="text" name="rollNumber" value={student.rollNumber} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Roll Number:</label>
+          <input 
+            type="text" 
+            name="rollNumber" 
+            value={student.rollNumber} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Student ID:</label>
-          <input type="text" name="studentID" value={student.studentID} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Student ID:</label>
+          <input 
+            type="text" 
+            name="studentID" 
+            value={student.studentID} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Class:</label>
-          <input type="text" name="class" value={student.class} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Class:</label>
+          <input 
+            type="text" 
+            name="class" 
+            value={student.class} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Father's Name:</label>
-          <input type="text" name="fathersName" value={student.fathersName} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Father's Name:</label>
+          <input 
+            type="text" 
+            name="fathersName" 
+            value={student.fathersName} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Mother's Name:</label>
-          <input type="text" name="mothersName" value={student.mothersName} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Mother's Name:</label>
+          <input 
+            type="text" 
+            name="mothersName" 
+            value={student.mothersName} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Mobile Number:</label>
-          <input type="text" name="mobileNumber" value={student.mobileNumber} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Mobile Number:</label>
+          <input 
+            type="text" 
+            name="mobileNumber" 
+            value={student.mobileNumber} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Aadhar Card:</label>
-          <input type="text" name="aadharCard" value={student.aadharCard} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Aadhar Card:</label>
+          <input 
+            type="text" 
+            name="aadharCard" 
+            value={student.aadharCard} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Fees:</label>
-          <input type="number" name="fees" value={student.fees} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Fees:</label>
+          <input 
+            type="number" 
+            name="fees" 
+            value={student.fees} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Year of Admission:</label>
-          <input type="number" name="yearOfAdmission" value={student.yearOfAdmission} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Year of Admission:</label>
+          <input 
+            type="number" 
+            name="yearOfAdmission" 
+            value={student.yearOfAdmission} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
+
         <div>
-          <label>Address:</label>
-          <input type="text" name="address" value={student.address} onChange={handleChange} className="w-full p-2 border" />
+          <label className="block font-semibold text-gray-700 mb-1">Address:</label>
+          <input 
+            type="text" 
+            name="address" 
+            value={student.address} 
+            onChange={handleChange} 
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
+            required 
+          />
         </div>
-        <button type="submit" className="p-2 mt-4 text-white bg-blue-500">Update Student</button>
+
+        <button 
+          type="submit" 
+          className="w-full py-3 bg-red-500 text-white font-semibold rounded-full hover:bg-red-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
+        >
+          Update Student
+        </button>
       </form>
-      <button onClick={handleBack} className="p-2 mt-4 ml-4 text-white bg-gray-500">Back</button>
     </div>
   );
 };
