@@ -1,28 +1,30 @@
-// routes/students.js
+// routes/studentRoutes.js
 const express = require('express');
+const { 
+  fetchAllStudents, 
+  createStudent, 
+  updateStudent, 
+  deleteStudent, 
+  searchStudents,
+  fetchStudentById
+} = require('../controller/studentController');
+
 const router = express.Router();
-const Student = require('../models/Student');
 
-// CRUD Operations for Students
-router.post('/', async (req, res) => {
-  const newStudent = new Student(req.body);
-  await newStudent.save();
-  res.json(newStudent);
-});
+// Route to fetch all students
+router.get('/', fetchAllStudents);
 
-router.put('/:id', async (req, res) => {
-  const updatedStudent = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updatedStudent);
-});
+// Route to create a new student
+router.post('/', createStudent);
 
-router.delete('/:id', async (req, res) => {
-  await Student.findByIdAndDelete(req.params.id);
-  res.json({ message: 'Student deleted' });
-});
+// Route to update a student by ID
+router.put('/:id', updateStudent);
 
-router.get('/', async (req, res) => {
-  const students = await Student.find();
-  res.json(students);
-});
+router.get('/:id', fetchStudentById);
+
+// Route to delete a student by ID
+router.delete('/:id', deleteStudent);
+
+router.get('/search', searchStudents);
 
 module.exports = router;

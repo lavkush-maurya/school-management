@@ -9,7 +9,10 @@ const StudentSchema = new mongoose.Schema({
   fathersName: String,
   mothersName: String,
   mobileNumber: String,
-  aadharCard: String,
+  aadharCard: {
+    type:String,
+    unique:true
+  },
   fees: Number,
   yearOfAdmission: Number,
   address: String
