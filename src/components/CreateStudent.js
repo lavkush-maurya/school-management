@@ -38,7 +38,7 @@ const CreateStudent = () => {
   };
 
   return (
-    <div className="p-4 lg:mx-28 md:mx-16 mx-4 my-8">
+    <div className="p-4 mt-20 lg:mx-28 md:mx-16 mx-4 my-8">
       <h1 className="text-3xl font-bold text-red-600 text-center mb-6">Create New Student</h1>
 
       <div className="flex justify-center mb-4">

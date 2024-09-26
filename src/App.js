@@ -6,9 +6,12 @@ import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
 import Teachers from "./pages/Teachers";
 import StudentDetail from "./pages/StudentDetail";
+import TeacherDetail from "./pages/TeacherDetail";
 import CreateStudent from "./components/CreateStudent";
 import EditStudent from "./components/EditStudent";
 import Navbar from "./components/Navbar";
+import CreateTeacher from "./components/Createteacher";
+import EditTeacher from "./components/EditTeacher";
 
 const App = () => {
   return (
@@ -19,9 +22,12 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/students" element={<Students />} />
         <Route path="/students/new" element={<CreateStudent />} />
+        <Route path="/teachers/new" element={<CreateTeacher />} />
         <Route path="/students/:id" element={<StudentDetail />} />
+        <Route path="/teachers/:id" element={<TeacherDetail />} />
         <Route path="/teachers" element={<Teachers />} />
         <Route path="/edit/:id" element={<EditStudent />} />
+        <Route path="/edit-teacher/:id" element={<EditTeacher />} />
       </Routes>
     </Router>
   );

@@ -96,7 +96,7 @@ const Students = () => {
   };
 
   return (
-    <div className="p-4 lg:mx-28 md:mx-16 mx-0">
+    <div className="p-4 mt-20 lg:mx-28 md:mx-16 mx-0">
       <h1 className="text-3xl font-bold text-red-600 text-center">Students</h1>
 
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-4">
