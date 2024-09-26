@@ -100,14 +100,27 @@ const EditStudent = () => {
 
         <div>
           <label className="block font-semibold text-gray-700 mb-1">Class:</label>
-          <input 
-            type="text" 
+          <select 
             name="class" 
             value={student.class} 
             onChange={handleChange} 
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-red-400" 
-            required 
-          />
+            required
+          >
+            <option value="">Select Class</option>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+            <option value="5th">5th</option>
+            <option value="6th">6th</option>
+            <option value="7th">7th</option>
+            <option value="8th">8th</option>
+            <option value="9th">9th</option>
+            <option value="10th">10th</option>
+            <option value="11th">11th</option>
+            <option value="12th">12th</option>
+          </select>
         </div>
 
         <div>
