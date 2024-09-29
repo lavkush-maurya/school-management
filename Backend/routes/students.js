@@ -5,7 +5,6 @@ const {
   createStudent,
   updateStudent,
   deleteStudent,
-  searchStudents,
   uploadStudents,
   fetchStudentById,
 } = require("../controller/studentController");
@@ -30,7 +29,5 @@ router.get("/:id", fetchStudentById);
 
 // Route to delete a student by ID
 router.delete("/:id", deleteStudent);
-
-router.get("/search", searchStudents);
 
 module.exports = router;

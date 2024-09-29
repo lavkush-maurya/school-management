@@ -194,44 +194,6 @@ exports.updateStudent = async (req, res) => {
   }
 };
 
-// Search students based on name, class, and roll number
-exports.searchStudents = async (req, res) => {
-  const { name, class: studentClass, rollNumber } = req.query; // Expecting query parameters
-  const searchCriteria = {};
-
-  // Check if name is provided and has a length greater than 0
-  if (name && name.length > 0) {
-    searchCriteria.name = { $regex: name, $options: "i" }; // Case-insensitive search
-  }
-
-  // Check if class is provided and has a length greater than 0
-  if (studentClass && studentClass.length > 0) {
-    searchCriteria.class = studentClass;
-  }
-
-  // Check if rollNumber is provided and has a length greater than 0
-  if (rollNumber && rollNumber.length > 0) {
-    searchCriteria.rollNumber = rollNumber;
-  }
-
-  try {
-    // Search for students based on the constructed criteria
-    const students = await Student.find(searchCriteria);
-
-    // If no students are found
-    if (students.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No students found matching the criteria." });
-    }
-
-    // Return the matching students
-    res.status(200).json(students);
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
 // Fetch a single student by ID
 exports.fetchStudentById = async (req, res) => {
   const { id } = req.params; // Get the ID from the URL parameters

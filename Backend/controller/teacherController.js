@@ -3,11 +3,27 @@ const { body, validationResult } = require("express-validator");
 
 // Fetch all teachers
 exports.fetchAllTeachers = async (req, res) => {
+  const { name } = req.query; // Expecting query parameter
+  const searchCriteria = {};
+
+  // Check if name is provided and has a length greater than 0
+  if (name && name.length > 0) {
+    searchCriteria.name = { $regex: name, $options: "i" }; // Case-insensitive search
+  }
+
   try {
-    const teachers = await Teacher.find();
+    // If searchCriteria is empty, fetch all teachers
+    const teachers =
+      Object.keys(searchCriteria).length === 0
+        ? await Teacher.find()
+        : await Teacher.find(searchCriteria);
+
+    // If no teachers are found
     if (teachers.length === 0) {
       return res.status(404).json({ message: "No teachers found." });
     }
+
+    // Return the matching teachers
     res.status(200).json(teachers);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
@@ -93,26 +109,3 @@ exports.deleteTeacher = async (req, res) => {
   }
 };
 
-// Search teachers based on name and teacherID
-exports.searchTeachers = async (req, res) => {
-  const { name, teacherID } = req.query;
-  const searchCriteria = {};
-
-  if (name && name.length > 0) {
-    searchCriteria.name = { $regex: name, $options: "i" };
-  }
-
-  if (teacherID && teacherID.length > 0) {
-    searchCriteria.teacherID = teacherID;
-  }
-
-  try {
-    const teachers = await Teacher.find(searchCriteria);
-    if (teachers.length === 0) {
-      return res.status(404).json({ message: "No teachers found matching the criteria." });
-    }
-    res.status(200).json(teachers);
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-};

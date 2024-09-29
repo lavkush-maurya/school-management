@@ -9,7 +9,7 @@ const Teachers = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  const fetchTeachers = async (filter = "") => {
+  const fetchTeachers = async (filter = {}) => {
     try {
       const response = await axiosFetch.get(`/api/teachers`, {
         params: { name: filter },
