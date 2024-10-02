@@ -9,7 +9,7 @@ import {
   LinearScale,
   BarElement,
   LineElement,
-  PointElement, // Import PointElement
+  PointElement,
 } from 'chart.js';
 import { Pie, Bar, Line, Doughnut } from 'react-chartjs-2';
 
@@ -21,7 +21,7 @@ ChartJS.register(
   LinearScale,
   BarElement,
   LineElement,
-  PointElement // Register PointElement for Line charts
+  PointElement
 );
 
 // Random static data
@@ -70,6 +70,7 @@ const dataLine = {
       fill: false,
       backgroundColor: 'rgba(255, 206, 86, 1)',
       borderColor: 'rgba(255, 206, 86, 1)',
+      tension: 0.1, // Smooth line curve
     },
   ],
 };
@@ -100,24 +101,72 @@ const dataDoughnut = {
 const Dashboard = () => {
   return (
     <div className="p-4 mt-20 lg:mx-28 md:mx-16 mx-0">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p>Welcome to the School Management System!</p>
+      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
+      <p className="mb-6">Welcome to the School Management System! Here's an overview of our financials and student enrollment trends.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+        <div className="bg-white shadow rounded-lg p-4">
           <h2 className="text-xl font-semibold">Student Enrollment Over Years (Line Chart)</h2>
-          <Line data={dataLine} />
+          <Line 
+            data={dataLine} 
+            options={{
+              responsive: true,
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (context) => `${context.dataset.label}: ${context.parsed.y} students`,
+                  },
+                },
+              },
+            }} 
+          />
         </div>
-        <div>
+        <div className="bg-white shadow rounded-lg p-4">
           <h2 className="text-xl font-semibold">Monthly Fees Collected (Bar Chart)</h2>
-          <Bar data={dataBar} />
+          <Bar 
+            data={dataBar} 
+            options={{
+              responsive: true,
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (context) => `${context.dataset.label}: $${context.parsed.y}`,
+                  },
+                },
+              },
+            }} 
+          />
         </div>
-        <div>
+        <div className="bg-white shadow rounded-lg p-4">
           <h2 className="text-xl font-semibold">Financial Overview (Pie Chart)</h2>
-          <Pie data={dataPie} />
+          <Pie 
+            data={dataPie} 
+            options={{
+              responsive: true,
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (context) => `${context.label}: $${context.parsed}`,
+                  },
+                },
+              },
+            }} 
+          />
         </div>
-        <div>
+        <div className="bg-white shadow rounded-lg p-4">
           <h2 className="text-xl font-semibold">Expenses Breakdown (Doughnut Chart)</h2>
-          <Doughnut data={dataDoughnut} />
+          <Doughnut 
+            data={dataDoughnut} 
+            options={{
+              responsive: true,
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (context) => `${context.label}: $${context.parsed}`,
+                  },
+                },
+              },
+            }} 
+          />
         </div>
       </div>
     </div>
